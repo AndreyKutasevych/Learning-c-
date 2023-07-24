@@ -40,7 +40,7 @@ namespace Hello_world
         
         private void ShowCart()
         {
-
+            Console.WriteLine("Stash");
         }
 
         private void AddToCart()
