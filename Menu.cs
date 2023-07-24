@@ -28,6 +28,7 @@ namespace Hello_world
 
         public void Start()
         {
+            Console.Clear();
             _textViewer.ButtonMapingCallBack(_listMenu);
         }
     }
