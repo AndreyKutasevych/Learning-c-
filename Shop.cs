@@ -5,7 +5,7 @@ namespace Hello_world
 {
     class Shop
     {
-        private Action _menuStartAction;
+        private Action _comeBackAction;
         private Action<List<ConsoleTextViewer.Button>> _actionButtonMaping;
         private List<PeopleDescriptor> _listPeople = new List<PeopleDescriptor>();
         private List<ConsoleTextViewer.Button> _listTextViewer = new List<ConsoleTextViewer.Button>();
@@ -16,7 +16,7 @@ namespace Hello_world
         public Shop(Action<List<ConsoleTextViewer.Button>> actionButtonMaping, Action comeBackAction)
         {
             _actionButtonMaping += actionButtonMaping;
-            _menuStartAction += comeBackAction;
+            _comeBackAction += comeBackAction;
             _buttonShowGoodsList = new ConsoleTextViewer.Button("Show goods list", ShowGoodsList);
             _buttonShowCart = new ConsoleTextViewer.Button("Show Cart", ShowCart);
             _buttonAddToCart = new ConsoleTextViewer.Button("Add to Cart", AddToCart);
@@ -32,6 +32,7 @@ namespace Hello_world
             Console.WriteLine("Hello! You are in the human shop! What would you like to buy?");
             _actionButtonMaping.Invoke(_listTextViewer);
         }
+
         private void ShowGoodsList()
         {
             
@@ -41,13 +42,15 @@ namespace Hello_world
         {
 
         }
+
         private void AddToCart()
         {
 
         }
+
         private void MainMenu()
         {
-            _menuStartAction.Invoke();
+            _comeBackAction.Invoke();
         }
     }
 }
