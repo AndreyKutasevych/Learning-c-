@@ -22,19 +22,13 @@ namespace Hello_world
             _shopMenu = new Shop(_buttonMaping, _menuStartAction);
             _factoryEnter = new ConsoleTextViewer.Button("Go to Factory", _humanMenu.Start);
             _shopEnter = new ConsoleTextViewer.Button("Go to Shop", _shopMenu.Start);
-            _programClose = new ConsoleTextViewer.Button("Close the program", ProgramClose);
+            _programClose = new ConsoleTextViewer.Button("Close the program", ()=> { });
             _listMenu = new List<ConsoleTextViewer.Button>() { _factoryEnter, _shopEnter, _programClose};
-            
-            _buttonMaping.Invoke(_listMenu);
         }
 
         public void Start()
         {
-            _buttonMaping.Invoke(_listMenu);
-        }
-        public void ProgramClose()
-        {
-            Environment.Exit(0);
+            _textViewer.ButtonMapingCallBack(_listMenu);
         }
     }
 }
