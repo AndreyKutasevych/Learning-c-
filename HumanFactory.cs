@@ -53,7 +53,6 @@ namespace Hello_world
             Console.WriteLine("What will be the price of new human");
             int price = int.Parse(Console.ReadLine());
             CreateHuman(name, age, price);
-            Console.ReadLine();
             _actionButtonMaping.Invoke(_listTextViewer);
         }
         private void CreateHuman(string name, int age, int price)
