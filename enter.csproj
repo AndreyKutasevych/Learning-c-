@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseShop.cs" />
     <Compile Include="ConsoleTextViewer.cs" />
     <Compile Include="HumanFactory.cs" />
     <Compile Include="ISellable.cs" />
@@ -51,7 +52,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="PeopleDescriptor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Shop.cs" />
+    <Compile Include="ShopHumans.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

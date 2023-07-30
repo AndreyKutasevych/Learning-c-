@@ -3,20 +3,20 @@ using System.Collections.Generic;
 
 namespace Hello_world
 {
-    public class Shop: BaseShop
+    public class ShopHumans : BaseShop<PeopleDescriptor>
     {
-        private List<PeopleDescriptor> _listPeople = new List<PeopleDescriptor>();
         private Action<List<ConsoleTextViewer.Button>> _actionButtonMaping;
         private List<ConsoleTextViewer.Button> _listTextViewer = new List<ConsoleTextViewer.Button>();
         private ConsoleTextViewer.Button _buttonMainMenu;
         private ISellable _factoryBuyhuman;
-        public Shop(ConsoleTextViewer textViewer, Action comeBackAction, ISellable factoryBuyHuman) : base(comeBackAction)
+
+        public ShopHumans(ConsoleTextViewer textViewer, Action comeBackAction, ISellable factoryBuyHuman) : base(
+            comeBackAction)
         {
             _factoryBuyhuman = factoryBuyHuman;
             _actionButtonMaping += textViewer.ButtonMapingCallBack;
             _buttonMainMenu = new ConsoleTextViewer.Button("Go to Main Menu", ComeBackMenu);
             _listTextViewer.Add(_buttonMainMenu);
-            
         }
 
         public override void SellRequest()
@@ -29,7 +29,5 @@ namespace Hello_world
             Console.WriteLine("Hello! You are in the human shop! What would you like to buy?");
             _factoryBuyhuman.SellRequest();
         }
-
-       
     }
 }

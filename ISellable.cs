@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Hello_world
+﻿namespace Hello_world
 {
     public interface ISellable
     {

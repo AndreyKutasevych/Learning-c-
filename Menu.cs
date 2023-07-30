@@ -9,7 +9,7 @@ namespace Hello_world
         private ConsoleTextViewer.Button _shopEnter;
         private ConsoleTextViewer.Button _programClose;
         private HumanFactory _human;
-        private Shop _shop;
+        private ShopHumans _shopHumans;
         private ConsoleTextViewer _textViewer = new ConsoleTextViewer();
         private List<ConsoleTextViewer.Button> _listMenu;
         
@@ -18,9 +18,9 @@ namespace Hello_world
         {
             _menuStartAction += Start;
             _human = new HumanFactory(_textViewer, _menuStartAction);
-            _shop = new Shop(_textViewer, _menuStartAction, _human);
+            _shopHumans = new ShopHumans(_textViewer, _menuStartAction, _human);
             _factoryEnter = new ConsoleTextViewer.Button("Go to Factory", _human.Start);
-            _shopEnter = new ConsoleTextViewer.Button("Go to Shop", _shop.Start);
+            _shopEnter = new ConsoleTextViewer.Button("Go to ShopHumans", _shopHumans.Start);
             _programClose = new ConsoleTextViewer.Button("Close the program", ()=> { });
             _listMenu = new List<ConsoleTextViewer.Button>() { _factoryEnter, _shopEnter, _programClose};
         }

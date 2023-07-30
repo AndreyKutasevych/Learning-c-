@@ -19,14 +19,13 @@
             {
                 if (Age < 6)
                     return AgeGroup.baby;
-                else if (Age >= 6 && Age < 12)
+                if (Age >= 6 && Age < 12)
                     return AgeGroup.child;
-                else if (Age >= 12 && Age < 18)
+                if (Age >= 12 && Age < 18)
                     return AgeGroup.teenager;
-                else if (Age >= 18 && Age < 65)
+                if (Age >= 18 && Age < 65)
                     return AgeGroup.growth;
-                else 
-                    return AgeGroup.pensioneer;
+                return AgeGroup.pensioneer;
             }
         }
 
@@ -34,7 +33,6 @@
         public int Age
         {
             get;
-            private set;
         }
         public string Name
         {
