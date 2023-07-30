@@ -7,9 +7,8 @@ using System.Xml.Linq;
 
 namespace Hello_world
 {
-    public class HumanFactory: ISellable
+    public class HumanFactory: BaseShop
     {
-        private Action _menuStartAction;
         private Action<List<ConsoleTextViewer.Button>> _actionButtonMaping;
         private Func<List<ConsoleTextViewer.ButtonReturning<SkinColor>>,SkinColor> _skinColorChoose;
         private Func<List<ConsoleTextViewer.ButtonReturning<AgeGroup>>, AgeGroup> _ageGroupChoose;
@@ -21,37 +20,27 @@ namespace Hello_world
         private ConsoleTextViewer.Button _buttonCreateHuman;
         private ConsoleTextViewer.Button _buttonShowList;
         private ConsoleTextViewer.Button _buttonMainMenu;
-        private ConsoleTextViewer.Button _buttonWhite;
-        private ConsoleTextViewer.Button _buttonBlack;
-        private ConsoleTextViewer.Button _buttonBaby;
-        private ConsoleTextViewer.Button _buttonChild;
-        private ConsoleTextViewer.Button _buttonTeenager;
-        private ConsoleTextViewer.Button _buttonGrowth;
-        private ConsoleTextViewer.Button _buttonMiddleAge;
-        private ConsoleTextViewer.Button _buttonPensioneer;
+        
 
         private List<ConsoleTextViewer.ButtonReturning<SkinColor>> _listSkinColorReturn = new List<ConsoleTextViewer.ButtonReturning<SkinColor>>();
         private List<ConsoleTextViewer.ButtonReturning<AgeGroup>> _listAgeGroupReturn = new List<ConsoleTextViewer.ButtonReturning<AgeGroup>>();
         private List<ConsoleTextViewer.Button> _listTextViewerMainButtons = new List<ConsoleTextViewer.Button>();
         private List<ConsoleTextViewer.Button> _listHumanMainSortButtons = new List<ConsoleTextViewer.Button>();
-        private List<ConsoleTextViewer.Button> _listAgeSortButtons = new List<ConsoleTextViewer.Button>();
         private List<ConsoleTextViewer.Button> _listColorChoose = new List<ConsoleTextViewer.Button>();
         private List<PeopleDescriptor> _listPeopleNotActual = new List<PeopleDescriptor>();
         private List<PeopleDescriptor> _listPeople = new List<PeopleDescriptor>();
         private List<SkinColor> _listSkinColor = new List<SkinColor>();
         private List<AgeGroup> _listAgeGroup = new List<AgeGroup>();
-        public HumanFactory(ConsoleTextViewer textViewer, Action menuStartAction)
+        public HumanFactory(ConsoleTextViewer textViewer, Action menuStartAction):base(menuStartAction)
         {
             _skinColorChoose += textViewer.ChooseButtonType;
             _ageGroupChoose += textViewer.ChooseButtonType;
             _actionButtonMaping += textViewer.ButtonMapingCallBack;
-            _menuStartAction += menuStartAction;
             _buttonCreateHuman = new ConsoleTextViewer.Button("CreateHuman", CreateHuman);
             _buttonShowList = new ConsoleTextViewer.Button("Show Human List", ListHuman);
-            _buttonMainMenu = new ConsoleTextViewer.Button("Go to Main Menu", MainMenu);
+            _buttonMainMenu = new ConsoleTextViewer.Button("Go to Main Menu", ComeBackMenu);
 
-            _buttonWhite = new ConsoleTextViewer.Button("White", ListHuman);
-            _buttonBlack = new ConsoleTextViewer.Button("Black", MainMenu);
+           
 
             _buttonFullList = new ConsoleTextViewer.Button("Show full list of humans", Sort);
             _buttonSkinColorSort = new ConsoleTextViewer.Button("Sort by skin color", ()=> Sort(SkinColorChoose()));
@@ -83,7 +72,7 @@ namespace Hello_world
             }
         }
 
-        public void Start()
+        public override void Start()
         {   
             Console.WriteLine("Hello! You are on the human factory! Congratulations!");
             _actionButtonMaping.Invoke(_listTextViewerMainButtons);        
@@ -168,16 +157,13 @@ namespace Hello_world
             PeopleDescriptor human = new PeopleDescriptor(name, age, price, skinColor);
             _listPeople.Add(human);
         }
-        private void MainMenu()
-        {
-            _menuStartAction.Invoke();
-        }
 
-        public void SellRequest()
+        public override void SellRequest()
         {
             var human = _listPeople[0];
             _listPeopleNotActual.Add(human);
             _listPeople.Remove(human);
         }
+        
     }
 }
