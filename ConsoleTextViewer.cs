@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using static Hello_world.ConsoleTextViewer;
 
 namespace Hello_world
 {
@@ -29,6 +30,28 @@ namespace Hello_world
             buttons[userOutput].Action.Invoke();
                        
         }
-        
+        public T ChooseButtonType<T>(List<ButtonReturning<T>> button)
+        {
+            for (int i = 0; i < button.Count; i++)
+            {
+                int index = i;
+                index++;
+                Console.WriteLine($"{index}. {button[i].Text}");
+            }
+            int userOutput = int.Parse(Console.ReadLine());
+            userOutput--;
+            return button[userOutput].Func.Invoke();
+        }
+        public class ButtonReturning<T>
+        {
+            public string Text { get; private set; }
+            public Func<T> Func;
+
+            public ButtonReturning(string text, Func<T> func)
+            {
+                Text = text;
+                Func += func;
+            }
+        }
     }
 }
