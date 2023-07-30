@@ -5,14 +5,14 @@ namespace Hello_world
     public abstract class BaseShop: ISellable
     {
         private Action _comeBackMenu;
-        public BaseShop(Action _comeBackMenu)
+        public BaseShop(Action comeBackMenu)
         {
-            this._comeBackMenu = _comeBackMenu;
+            _comeBackMenu += comeBackMenu;
         }
         public abstract void Start();
-        private void ComeBackMenu()
+        protected void ComeBackMenu()
         {
-
+            _comeBackMenu?.Invoke();
         }
 
         public virtual void SellResponse()
